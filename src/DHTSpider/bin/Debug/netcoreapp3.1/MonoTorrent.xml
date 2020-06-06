@@ -1226,7 +1226,7 @@
         </member>
         <member name="T:MonoTorrent.Client.ClientEngine">
             <summary>
-            The Engine that contains the TorrentManagers
+            包含TorrentManager的引擎
             </summary>
         </member>
         <member name="F:MonoTorrent.Client.ClientEngine.PeerIdRandomGenerator">
@@ -1258,9 +1258,42 @@
             of the ports the engine is managing.
             </summary>
         </member>
+        <member name="M:MonoTorrent.Client.ClientEngine.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MonoTorrent.Client.ClientEngine.#ctor(MonoTorrent.Client.EngineSettings)">
+            <summary>
+            
+            </summary>
+            <param name="settings"></param>
+        </member>
+        <member name="M:MonoTorrent.Client.ClientEngine.#ctor(MonoTorrent.Client.EngineSettings,MonoTorrent.Client.PieceWriters.IPieceWriter)">
+            <summary>
+            
+            </summary>
+            <param name="settings"></param>
+            <param name="writer"></param>
+        </member>
+        <member name="M:MonoTorrent.Client.ClientEngine.#ctor(MonoTorrent.Client.EngineSettings,MonoTorrent.Client.Listeners.IPeerListener)">
+            <summary>
+            
+            </summary>
+            <param name="settings"></param>
+            <param name="listener"></param>
+        </member>
+        <member name="M:MonoTorrent.Client.ClientEngine.#ctor(MonoTorrent.Client.EngineSettings,MonoTorrent.Client.Listeners.IPeerListener,MonoTorrent.Client.PieceWriters.IPieceWriter)">
+            <summary>
+            
+            </summary>
+            <param name="settings"></param>
+            <param name="listener"></param>
+            <param name="writer"></param>
+        </member>
         <member name="M:MonoTorrent.Client.ClientEngine.DownloadMetadataAsync(MonoTorrent.MagnetLink,System.Threading.CancellationToken)">
             <summary>
-            Downloads the .torrent metadata for the provided MagnetLink.
+            下载磁力链接对应的.torrent元数据
             </summary>
             <param name="magnetLink">The MagnetLink to get the metadata for.</param>
             <param name="token">The cancellation token used to to abort the download. This method will
@@ -1808,6 +1841,11 @@
             Contains the logic for choosing what piece to download next
             </summary>
         </member>
+        <member name="T:MonoTorrent.Client.TorrentManager">
+            <summary>
+            种子管理器
+            </summary>
+        </member>
         <member name="E:MonoTorrent.Client.TorrentManager.PeerConnected">
             <summary>
             This asynchronous event is raised whenever a new incoming, or outgoing, connection
@@ -2022,12 +2060,12 @@
         </member>
         <member name="M:MonoTorrent.Client.TorrentManager.PauseAsync">
             <summary>
-            Pauses the TorrentManager
+            异步暂停种子管理器
             </summary>
         </member>
         <member name="M:MonoTorrent.Client.TorrentManager.StartAsync">
             <summary>
-            Starts the TorrentManager
+            异步启动种子管理器
             </summary>
         </member>
         <member name="M:MonoTorrent.Client.TorrentManager.DhtAnnounceAsync">
@@ -2143,7 +2181,7 @@
         </member>
         <member name="T:MonoTorrent.Client.EngineSettings">
             <summary>
-            Represents the Settings which need to be passed to the engine
+            引擎配置类
             </summary>
         </member>
         <member name="P:MonoTorrent.Client.EngineSettings.AllowedEncryption">
@@ -2169,41 +2207,39 @@
         </member>
         <member name="P:MonoTorrent.Client.EngineSettings.ListenPort">
             <summary>
-            The TCP port the engine should listen on for incoming connections. Defaults to 52138.
+            引擎监听的入站端口,默认:52138
             </summary>
         </member>
         <member name="P:MonoTorrent.Client.EngineSettings.MaximumConnections">
             <summary>
-            The maximum number of concurrent open connections overall. Defaults to 150.
+            打开连接的最大并发数,默认150上限.
             </summary>
         </member>
         <member name="P:MonoTorrent.Client.EngineSettings.MaximumDownloadSpeed">
             <summary>
-            The maximum download speed, in bytes per second, overall. A value of 0 means unlimited. Defaults to 0.
+            最大的下载速度(字节/秒),值为0表示无限制,默认为:0
             </summary>
         </member>
         <member name="P:MonoTorrent.Client.EngineSettings.MaximumHalfOpenConnections">
             <summary>
-            The maximum number of concurrent connection attempts overall. Defaults to 8.
+            连接尝试的最大次数,默认为:8
             </summary>
         </member>
         <member name="P:MonoTorrent.Client.EngineSettings.MaximumUploadSpeed">
             <summary>
-            The maximum upload speed, in bytes per second, overall. A value of 0 means unlimited. defaults to 0.
+            最大上传速度(字节/秒),值为0表示无限制,默认为:0
             </summary>
         </member>
         <member name="P:MonoTorrent.Client.EngineSettings.MaximumOpenFiles">
             <summary>
-            The maximum number of files which can be opened concurrently. On platforms which limit the maximum
-            filehandles for a process it can be beneficial to limit the number of open files to prevent
-            running out of resources. A value of 0 means unlimited, but this is not recommended. Defaults to 20.
+            可同时打开的最大文件数,在限制进程最大文件句柄数的平台上.
+            限制打开的文件数可以防止计算机资源耗尽,值0表示无限制,但不建议这样做.默认为:20
             </summary>
         </member>
         <member name="P:MonoTorrent.Client.EngineSettings.MaximumDiskReadRate">
             <summary>
-            The maximum disk read speed, in bytes per second. A value of 0 means unlimited. This is
-            typically only useful for non-SSD drives to prevent the hashing process from saturating
-            the available drive bandwidth. Defaults to 0.
+            最大磁盘读取速度(字节/秒).值为0表示无限制.
+            只对非SSD驱动器有用,以防止哈希处理使可用驱动器带宽饱和.默认为:0
             </summary>
         </member>
         <member name="P:MonoTorrent.Client.EngineSettings.MaximumDiskWriteRate">
@@ -2231,8 +2267,13 @@
         </member>
         <member name="P:MonoTorrent.Client.EngineSettings.SavePath">
             <summary>
-            This is the path where the .torrent metadata will be saved when magnet links are used to start a download.
+            这是使用磁链接启动下载时保存.torrent元数据的路径
             Defaults to <see langword="null" />
+            </summary>
+        </member>
+        <member name="T:MonoTorrent.Client.TorrentSettings">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:MonoTorrent.Client.TorrentSettings.AllowDht">
@@ -2265,12 +2306,12 @@
         </member>
         <member name="P:MonoTorrent.Client.TorrentSettings.MaximumDownloadSpeed">
             <summary>
-            The maximum download speed, in bytes per second, for this torrent. A value of 0 means unlimited. Defaults to 0.
+            最大的下载速度, in bytes per second, for this torrent. A value of 0 means unlimited. Defaults to 0.
             </summary>
         </member>
         <member name="P:MonoTorrent.Client.TorrentSettings.MaximumUploadSpeed">
             <summary>
-            The maximum upload speed, in bytes per second, for this torrent. A value of 0 means unlimited. defaults to 0.
+            最大的上传速度, in bytes per second, for this torrent. A value of 0 means unlimited. defaults to 0.
             </summary>
         </member>
         <member name="P:MonoTorrent.Client.TorrentSettings.UploadSlots">
@@ -2372,11 +2413,22 @@
             This class holds a maximum amount of 8 Nodes and is itself a child of a RoutingTable
             </summary>
         </member>
+        <member name="T:MonoTorrent.Dht.DhtEngine">
+            <summary>
+            DHT引擎
+            </summary>
+        </member>
         <member name="M:MonoTorrent.Dht.DhtEngine.#ctor(System.Net.IPEndPoint)">
             <summary>
             Creates a new DhtEngine which listens for connections on the given endpoint
             </summary>
             <param name="listenerEndpoint">The IPAddresss/port which the engine should listen on</param>
+        </member>
+        <member name="M:MonoTorrent.Dht.DhtEngine.#ctor(MonoTorrent.Dht.Listeners.IDhtListener)">
+            <summary>
+            构造DHT引擎
+            </summary>
+            <param name="listener">监听对象</param>
         </member>
         <member name="P:MonoTorrent.Dht.MessageLoop.Engine">
             <summary>
@@ -3254,6 +3306,11 @@
             <param name="self"></param>
             <returns></returns>
         </member>
+        <member name="T:MonoTorrent.MagnetLink">
+            <summary>
+            磁力链接
+            </summary>
+        </member>
         <member name="P:MonoTorrent.MagnetLink.AnnounceUrls">
             <summary>
             The list of tracker Urls.
@@ -3266,12 +3323,12 @@
         </member>
         <member name="P:MonoTorrent.MagnetLink.Size">
             <summary>
-            The size in bytes of the data, if available.
+            数据的字节量.
             </summary>
         </member>
         <member name="P:MonoTorrent.MagnetLink.Name">
             <summary>
-            The display name of the torrent, if available.
+            对应的种子名称.
             </summary>
         </member>
         <member name="P:MonoTorrent.MagnetLink.Webseeds">
@@ -3281,16 +3338,16 @@
         </member>
         <member name="M:MonoTorrent.MagnetLink.Parse(System.String)">
             <summary>
-            Parses a magnet link from the given string. The uri should be in the form magnet:?xt=urn:btih:
+            将磁力链接字符串转换成磁力链接对象. uri必须为[magnet:?xt=urn:btih:]开头的字符串
             </summary>
-            <param name="uri"></param>
+            <param name="uri">以[magnet:?xt=urn:btih:]开头的字符串</param>
             <returns></returns>
         </member>
         <member name="M:MonoTorrent.MagnetLink.FromUri(System.Uri)">
             <summary>
-            Parses a magnet link from the given Uri. The uri should be in the form magnet:?xt=urn:btih:
+            从给定的Uri解析磁铁链接. uri必须为[magnet:?xt=urn:btih:]开头的Uri对象
             </summary>
-            <param name="uri"></param>
+            <param name="uri">以[magnet:?xt=urn:btih:]开头的Uri对象</param>
             <returns></returns>
         </member>
         <member name="T:MonoTorrent.ClientApp">
@@ -3367,9 +3424,14 @@
             <param name="count">The number of bytes to check</param>
             <returns></returns>
         </member>
+        <member name="T:MonoTorrent.Torrent">
+            <summary>
+            种子对象
+            </summary>
+        </member>
         <member name="P:MonoTorrent.Torrent.AnnounceUrls">
             <summary>
-            The announce URLs contained within the .torrent file
+            种子文件中包含的发布的URL
             </summary>
         </member>
         <member name="P:MonoTorrent.Torrent.AzureusProperties">
@@ -3392,12 +3454,12 @@
         </member>
         <member name="P:MonoTorrent.Torrent.Comment">
             <summary>
-            The comment contained within the .torrent file
+            种子文件中包含的注释
             </summary>
         </member>
         <member name="P:MonoTorrent.Torrent.CreatedBy">
             <summary>
-            The optional string showing who/what created the .torrent
+            显示是谁创建的.torrent信息
             </summary>
         </member>
         <member name="P:MonoTorrent.Torrent.CreationDate">
@@ -3455,7 +3517,7 @@
         </member>
         <member name="P:MonoTorrent.Torrent.Publisher">
             <summary>
-            The name of the Publisher
+            发布者的名称
             </summary>
         </member>
         <member name="P:MonoTorrent.Torrent.PublisherUrl">
@@ -3470,7 +3532,7 @@
         </member>
         <member name="P:MonoTorrent.Torrent.Size">
             <summary>
-            The total size of all the files that have to be downloaded.
+            下载的所有文件的总大小.
             </summary>
         </member>
         <member name="P:MonoTorrent.Torrent.Source">
@@ -3511,13 +3573,13 @@
         </member>
         <member name="M:MonoTorrent.Torrent.Load(System.String)">
             <summary>
-            This method loads a .torrent file from the specified path.
+            加载指定路径的种子文件
             </summary>
-            <param name="path">The path to load the .torrent file from</param>
+            <param name="path">文件路径</param>
         </member>
         <member name="M:MonoTorrent.Torrent.LoadAsync(System.String)">
             <summary>
-            This method loads a .torrent file from the specified path.
+            异步加载指定路径的种子文件
             </summary>
             <param name="path">The path to load the .torrent file from</param>
         </member>
@@ -3720,22 +3782,22 @@
             <summary>Provides access to the git information for the current assembly.</summary>
         </member>
         <member name="F:ThisAssembly.Git.IsDirty">
-            <summary>IsDirty: false</summary>
+            <summary>IsDirty: true</summary>
         </member>
         <member name="F:ThisAssembly.Git.IsDirtyString">
-            <summary>IsDirtyString: false</summary>
+            <summary>IsDirtyString: true</summary>
         </member>
         <member name="F:ThisAssembly.Git.Branch">
             <summary>Branch: master</summary>
         </member>
         <member name="F:ThisAssembly.Git.Commit">
-            <summary>Commit: 2f46531d</summary>
+            <summary>Commit: 99f96ebc</summary>
         </member>
         <member name="F:ThisAssembly.Git.Sha">
-            <summary>Sha: 2f46531d3b6bfb485c9d1569b3e110d5ce2aad89</summary>
+            <summary>Sha: 99f96ebc57f8c3731e4293aaf165677ba7345235</summary>
         </member>
         <member name="F:ThisAssembly.Git.Commits">
-            <summary>Commits on top of base version: 5</summary>
+            <summary>Commits on top of base version: 6</summary>
         </member>
         <member name="F:ThisAssembly.Git.Tag">
             <summary>Tag: </summary>
@@ -3765,7 +3827,7 @@
             <summary>Minor: 0</summary>
         </member>
         <member name="F:ThisAssembly.Git.SemVer.Patch">
-            <summary>Patch: 27</summary>
+            <summary>Patch: 28</summary>
         </member>
         <member name="F:ThisAssembly.Git.SemVer.Label">
             <summary>Label: </summary>

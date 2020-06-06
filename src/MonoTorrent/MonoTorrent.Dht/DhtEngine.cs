@@ -48,6 +48,9 @@ namespace MonoTorrent.Dht
         MethodUnknown = 204//Method Unknown
     }
 
+    /// <summary>
+    /// DHT引擎
+    /// </summary>
     public class DhtEngine : IDisposable, IDhtEngine
     {
         internal static readonly TimeSpan AnnounceInternal = TimeSpan.FromMinutes (10);
@@ -91,6 +94,10 @@ namespace MonoTorrent.Dht
         {
         }
 
+        /// <summary>
+        /// 构造DHT引擎
+        /// </summary>
+        /// <param name="listener">监听对象</param>
         public DhtEngine (IDhtListener listener)
         {
             if (listener == null)

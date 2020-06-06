@@ -41,6 +41,9 @@ using MonoTorrent.Client.Tracker;
 
 namespace MonoTorrent.Client
 {
+    /// <summary>
+    /// 种子管理器
+    /// </summary>
     public class TorrentManager : IDisposable, IEquatable<TorrentManager>
     {
         #region Events
@@ -575,7 +578,7 @@ namespace MonoTorrent.Client
         }
 
         /// <summary>
-        /// Pauses the TorrentManager
+        /// 异步暂停种子管理器
         /// </summary>
         public async Task PauseAsync ()
         {
@@ -590,7 +593,7 @@ namespace MonoTorrent.Client
         }
 
         /// <summary>
-        /// Starts the TorrentManager
+        /// 异步启动种子管理器
         /// </summary>
         public async Task StartAsync ()
             => await StartAsync (false);

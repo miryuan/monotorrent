@@ -33,7 +33,7 @@ using System.Net;
 namespace MonoTorrent.Client
 {
     /// <summary>
-    /// Represents the Settings which need to be passed to the engine
+    /// 引擎配置类
     /// </summary>
     [Serializable]
     public class EngineSettings : ICloneable
@@ -76,7 +76,7 @@ namespace MonoTorrent.Client
             }
         }
         /// <summary>
-        /// The TCP port the engine should listen on for incoming connections. Defaults to 52138.
+        /// 引擎监听的入站端口,默认:52138
         /// </summary>
         public int ListenPort {
             get => listenPort;
@@ -84,7 +84,7 @@ namespace MonoTorrent.Client
         }
 
         /// <summary>
-        /// The maximum number of concurrent open connections overall. Defaults to 150.
+        /// 打开连接的最大并发数,默认150上限.
         /// </summary>
         public int MaximumConnections {
             get => maximumConnections;
@@ -92,7 +92,7 @@ namespace MonoTorrent.Client
         }
 
         /// <summary>
-        /// The maximum download speed, in bytes per second, overall. A value of 0 means unlimited. Defaults to 0.
+        /// 最大的下载速度(字节/秒),值为0表示无限制,默认为:0
         /// </summary>
         public int MaximumDownloadSpeed {
             get => maximumDownloadSpeed;
@@ -100,7 +100,7 @@ namespace MonoTorrent.Client
         }
 
         /// <summary>
-        /// The maximum number of concurrent connection attempts overall. Defaults to 8.
+        /// 连接尝试的最大次数,默认为:8
         /// </summary>
         public int MaximumHalfOpenConnections {
             get => maximumHalfOpenConnections;
@@ -108,7 +108,7 @@ namespace MonoTorrent.Client
         }
 
         /// <summary>
-        /// The maximum upload speed, in bytes per second, overall. A value of 0 means unlimited. defaults to 0.
+        /// 最大上传速度(字节/秒),值为0表示无限制,默认为:0
         /// </summary>
         public int MaximumUploadSpeed {
             get => maximumUploadSpeed;
@@ -116,9 +116,8 @@ namespace MonoTorrent.Client
         }
 
         /// <summary>
-        /// The maximum number of files which can be opened concurrently. On platforms which limit the maximum
-        /// filehandles for a process it can be beneficial to limit the number of open files to prevent
-        /// running out of resources. A value of 0 means unlimited, but this is not recommended. Defaults to 20.
+        /// 可同时打开的最大文件数,在限制进程最大文件句柄数的平台上.
+        /// 限制打开的文件数可以防止计算机资源耗尽,值0表示无限制,但不建议这样做.默认为:20
         /// </summary>
         public int MaximumOpenFiles {
             get => maximumOpenFiles;
@@ -126,9 +125,8 @@ namespace MonoTorrent.Client
         }
 
         /// <summary>
-        /// The maximum disk read speed, in bytes per second. A value of 0 means unlimited. This is
-        /// typically only useful for non-SSD drives to prevent the hashing process from saturating
-        /// the available drive bandwidth. Defaults to 0.
+        /// 最大磁盘读取速度(字节/秒).值为0表示无限制.
+        /// 只对非SSD驱动器有用,以防止哈希处理使可用驱动器带宽饱和.默认为:0
         /// </summary>
         public int MaximumDiskReadRate {
             get => maximumDiskReadRate;
@@ -162,7 +160,7 @@ namespace MonoTorrent.Client
         public bool PreferEncryption { get; set; } = true;
 
         /// <summary>
-        /// This is the path where the .torrent metadata will be saved when magnet links are used to start a download.
+        /// 这是使用磁链接启动下载时保存.torrent元数据的路径
         /// Defaults to <see langword="null" />
         /// </summary>
         public string SavePath { get; set; } = null;

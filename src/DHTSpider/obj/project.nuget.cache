@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4v7JlbJF3jlcjdM5+jdufps4u80+7lHLaIWS8mtTyGcDkrDmDDYAQAqjnMW6c9Lsjoz5BfGh0R0GeA5ws2NkHA==",
+  "dgSpecHash": "LE0DuFUd87NG8gaU0lOwnNgybe0N9E+CUYKKLnnbaHTmN66ObXwZWshsPGIZoNw6cQBtfEBBcWFIXTF4pixr+A==",
   "success": true,
-  "projectFilePath": "D:\\Workspace\\monotorrent\\src\\DHTSpider\\DHTSpider.csproj",
+  "projectFilePath": "E:\\monotorrent\\src\\DHTSpider\\DHTSpider.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\weivy\\.nuget\\packages\\mono.nat\\2.0.1\\mono.nat.2.0.1.nupkg.sha512",
     "C:\\Users\\weivy\\.nuget\\packages\\reusabletasks\\1.0.7\\reusabletasks.1.0.7.nupkg.sha512"

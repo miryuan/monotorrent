@@ -1,21 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Workspace\\monotorrent\\src\\DHTSpider\\DHTSpider.csproj": {}
+    "E:\\monotorrent\\src\\DHTSpider\\DHTSpider.csproj": {}
   },
   "projects": {
-    "D:\\Workspace\\monotorrent\\src\\DHTSpider\\DHTSpider.csproj": {
+    "E:\\monotorrent\\src\\DHTSpider\\DHTSpider.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Workspace\\monotorrent\\src\\DHTSpider\\DHTSpider.csproj",
+        "projectUniqueName": "E:\\monotorrent\\src\\DHTSpider\\DHTSpider.csproj",
         "projectName": "DHTSpider",
-        "projectPath": "D:\\Workspace\\monotorrent\\src\\DHTSpider\\DHTSpider.csproj",
+        "projectPath": "E:\\monotorrent\\src\\DHTSpider\\DHTSpider.csproj",
         "packagesPath": "C:\\Users\\weivy\\.nuget\\packages\\",
-        "outputPath": "D:\\Workspace\\monotorrent\\src\\DHTSpider\\obj\\",
+        "outputPath": "E:\\monotorrent\\src\\DHTSpider\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\weivy\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -27,8 +32,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Workspace\\monotorrent\\src\\MonoTorrent\\MonoTorrent.csproj": {
-                "projectPath": "D:\\Workspace\\monotorrent\\src\\MonoTorrent\\MonoTorrent.csproj"
+              "E:\\monotorrent\\src\\MonoTorrent\\MonoTorrent.csproj": {
+                "projectPath": "E:\\monotorrent\\src\\MonoTorrent\\MonoTorrent.csproj"
               }
             }
           }
@@ -60,18 +65,23 @@
         }
       }
     },
-    "D:\\Workspace\\monotorrent\\src\\MonoTorrent\\MonoTorrent.csproj": {
+    "E:\\monotorrent\\src\\MonoTorrent\\MonoTorrent.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Workspace\\monotorrent\\src\\MonoTorrent\\MonoTorrent.csproj",
+        "projectUniqueName": "E:\\monotorrent\\src\\MonoTorrent\\MonoTorrent.csproj",
         "projectName": "MonoTorrent",
-        "projectPath": "D:\\Workspace\\monotorrent\\src\\MonoTorrent\\MonoTorrent.csproj",
+        "projectPath": "E:\\monotorrent\\src\\MonoTorrent\\MonoTorrent.csproj",
         "packagesPath": "C:\\Users\\weivy\\.nuget\\packages\\",
-        "outputPath": "D:\\Workspace\\monotorrent\\src\\MonoTorrent\\obj\\",
+        "outputPath": "E:\\monotorrent\\src\\MonoTorrent\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\weivy\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"

@@ -33,6 +33,9 @@ using MonoTorrent.Dht;
 
 namespace MonoTorrent.Client
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
     public class TorrentSettings : ICloneable
     {
@@ -73,7 +76,7 @@ namespace MonoTorrent.Client
         }
 
         /// <summary>
-        /// The maximum download speed, in bytes per second, for this torrent. A value of 0 means unlimited. Defaults to 0.
+        /// 最大的下载速度, in bytes per second, for this torrent. A value of 0 means unlimited. Defaults to 0.
         /// </summary>
         public int MaximumDownloadSpeed {
             get => maximumDownloadSpeed;
@@ -81,7 +84,7 @@ namespace MonoTorrent.Client
         }
 
         /// <summary>
-        /// The maximum upload speed, in bytes per second, for this torrent. A value of 0 means unlimited. defaults to 0.
+        /// 最大的上传速度, in bytes per second, for this torrent. A value of 0 means unlimited. defaults to 0.
         /// </summary>
         public int MaximumUploadSpeed {
             get => maximumUploadSpeed;

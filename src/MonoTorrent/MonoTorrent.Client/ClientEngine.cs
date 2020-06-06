@@ -48,7 +48,7 @@ using MonoTorrent.Dht;
 namespace MonoTorrent.Client
 {
     /// <summary>
-    /// The Engine that contains the TorrentManagers
+    /// 包含TorrentManager的引擎
     /// </summary>
     public class ClientEngine : IDisposable
     {
@@ -166,19 +166,30 @@ namespace MonoTorrent.Client
 
 
         #region Constructors
-
+        /// <summary>
+        /// 
+        /// </summary>
         public ClientEngine ()
-            : this(new EngineSettings ())
+            : this (new EngineSettings ())
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="settings"></param>
         public ClientEngine (EngineSettings settings)
             : this (settings, new DiskWriter ())
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="writer"></param>
         public ClientEngine (EngineSettings settings, IPieceWriter writer)
             : this (settings, new PeerListener (new IPEndPoint (IPAddress.Any, settings.ListenPort)), writer)
 
@@ -186,12 +197,23 @@ namespace MonoTorrent.Client
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="listener"></param>
         public ClientEngine (EngineSettings settings, IPeerListener listener)
             : this (settings, listener, new DiskWriter ())
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="listener"></param>
+        /// <param name="writer"></param>
         public ClientEngine (EngineSettings settings, IPeerListener listener, IPieceWriter writer)
         {
             Check.Settings (settings);
@@ -292,7 +314,7 @@ namespace MonoTorrent.Client
         }
 
         /// <summary>
-        /// Downloads the .torrent metadata for the provided MagnetLink.
+        /// 下载磁力链接对应的.torrent元数据
         /// </summary>
         /// <param name="magnetLink">The MagnetLink to get the metadata for.</param>
         /// <param name="token">The cancellation token used to to abort the download. This method will

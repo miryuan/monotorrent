@@ -33,6 +33,9 @@ using System.Text;
 
 namespace MonoTorrent
 {
+    /// <summary>
+    /// 磁力链接
+    /// </summary>
     public class MagnetLink
     {
         /// <summary>
@@ -50,14 +53,14 @@ namespace MonoTorrent
         }
 
         /// <summary>
-        /// The size in bytes of the data, if available.
+        /// 数据的字节量.
         /// </summary>
         public long? Size {
             get;
         }
 
         /// <summary>
-        /// The display name of the torrent, if available.
+        /// 对应的种子名称.
         /// </summary>
         public string Name {
             get;
@@ -80,9 +83,9 @@ namespace MonoTorrent
         }
 
         /// <summary>
-        /// Parses a magnet link from the given string. The uri should be in the form magnet:?xt=urn:btih:
+        /// 将磁力链接字符串转换成磁力链接对象. uri必须为[magnet:?xt=urn:btih:]开头的字符串
         /// </summary>
-        /// <param name="uri"></param>
+        /// <param name="uri">以[magnet:?xt=urn:btih:]开头的字符串</param>
         /// <returns></returns>
         public static MagnetLink Parse (string uri)
         {
@@ -90,9 +93,9 @@ namespace MonoTorrent
         }
 
         /// <summary>
-        /// Parses a magnet link from the given Uri. The uri should be in the form magnet:?xt=urn:btih:
+        /// 从给定的Uri解析磁铁链接. uri必须为[magnet:?xt=urn:btih:]开头的Uri对象
         /// </summary>
-        /// <param name="uri"></param>
+        /// <param name="uri">以[magnet:?xt=urn:btih:]开头的Uri对象</param>
         /// <returns></returns>
         public static MagnetLink FromUri (Uri uri)
         {
@@ -103,7 +106,7 @@ namespace MonoTorrent
             long? size = null;
 
             if (uri.Scheme != "magnet")
-                throw new FormatException ("Magnet links must start with 'magnet:'.");
+                throw new FormatException ("磁力链接必须为'magnet:'开头.");
 
             string[] parameters = uri.Query.Substring (1).Split ('&');
             for (int i = 0; i < parameters.Length; i++) {
@@ -116,7 +119,7 @@ namespace MonoTorrent
                 switch (keyval[0].Substring (0, 2)) {
                     case "xt"://exact topic
                         if (infoHash != null)
-                            throw new FormatException ("More than one infohash in magnet link is not allowed.");
+                            throw new FormatException ("磁铁链接中不允许有多个infohash.");
 
                         string val = keyval[1].Substring (9);
                         switch (keyval[1].Substring (0, 9)) {
@@ -127,7 +130,7 @@ namespace MonoTorrent
                                 else if (val.Length == 40)
                                     infoHash = InfoHash.FromHex (val);
                                 else
-                                    throw new FormatException ("Infohash must be base32 or hex encoded.");
+                                    throw new FormatException ("Infohash必须是Base32或十六进制编码.");
                                 break;
                         }
                         break;
@@ -155,7 +158,7 @@ namespace MonoTorrent
             }
 
             if (infoHash == null)
-                throw new FormatException ("The magnet link did not contain a valid 'xt' paramater referencing the infohash");
+                throw new FormatException ("磁铁链接不包含引用infohash的有效\"xt\"参数");
 
             return new MagnetLink (infoHash, name, announceUrls, webSeeds, size);
         }

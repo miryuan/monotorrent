@@ -39,6 +39,9 @@ using MonoTorrent.BEncoding;
 
 namespace MonoTorrent
 {
+    /// <summary>
+    /// 种子对象
+    /// </summary>
     public class Torrent : IEquatable<Torrent>, ITorrentData
     {
         #region Private Fields
@@ -60,7 +63,7 @@ namespace MonoTorrent
         internal byte[] Metadata { get; set; }
 
         /// <summary>
-        /// The announce URLs contained within the .torrent file
+        /// 种子文件中包含的发布的URL
         /// </summary>
         public IList<RawTrackerTier> AnnounceUrls { get; }
 
@@ -85,13 +88,13 @@ namespace MonoTorrent
 
 
         /// <summary>
-        /// The comment contained within the .torrent file
+        /// 种子文件中包含的注释
         /// </summary>
         public string Comment { get; set; }
 
 
         /// <summary>
-        /// The optional string showing who/what created the .torrent
+        /// 显示是谁创建的.torrent信息
         /// </summary>
         public string CreatedBy { get; set; }
 
@@ -163,7 +166,7 @@ namespace MonoTorrent
 
 
         /// <summary>
-        /// The name of the Publisher
+        /// 发布者的名称
         /// </summary>
         public string Publisher { get; set; }
 
@@ -181,7 +184,7 @@ namespace MonoTorrent
 
 
         /// <summary>
-        /// The total size of all the files that have to be downloaded.
+        /// 下载的所有文件的总大小.
         /// </summary>
         public long Size {
             get => size;
@@ -472,9 +475,9 @@ namespace MonoTorrent
         #region Loading methods
 
         /// <summary>
-        /// This method loads a .torrent file from the specified path.
+        /// 加载指定路径的种子文件
         /// </summary>
-        /// <param name="path">The path to load the .torrent file from</param>
+        /// <param name="path">文件路径</param>
         public static Torrent Load (string path)
         {
             Check.Path (path);
@@ -484,7 +487,7 @@ namespace MonoTorrent
         }
 
         /// <summary>
-        /// This method loads a .torrent file from the specified path.
+        /// 异步加载指定路径的种子文件
         /// </summary>
         /// <param name="path">The path to load the .torrent file from</param>
         public static Task<Torrent> LoadAsync (string path)
