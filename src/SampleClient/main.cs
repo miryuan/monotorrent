@@ -20,23 +20,22 @@ namespace SampleClient
         static string downloadsPath;
         static string fastResumeFile;
         static string torrentsPath;
-        static ClientEngine engine;				// The engine used for downloading
+        static ClientEngine engine;				// 用于下载的引擎
         static List<TorrentManager> torrents;	// The list where all the torrentManagers will be stored that the engine gives us
         static Top10Listener listener;			// This is a subclass of TraceListener which remembers the last 20 statements sent to it
 
         static void Main (string[] args)
         {
             /* Generate the paths to the folder we will save .torrent files to and where we download files to */
-            basePath = Environment.CurrentDirectory;						// This is the directory we are currently in
-            torrentsPath = Path.Combine (basePath, "Torrents");				// This is the directory we will save .torrents to
-            downloadsPath = Path.Combine (basePath, "Downloads");			// This is the directory we will save downloads to
+            basePath = Environment.CurrentDirectory;						// 程序所在的目录
+            torrentsPath = Path.Combine (basePath, "Torrents");				// Torrent存储的目录
+            downloadsPath = Path.Combine (basePath, "Downloads");			// 指定下载的目录
             fastResumeFile = Path.Combine (torrentsPath, "fastresume.data");
             dhtNodeFile = Path.Combine (basePath, "DhtNodes");
-            torrents = new List<TorrentManager> ();							// This is where we will store the torrentmanagers
+            torrents = new List<TorrentManager> ();							// 存储TorrentManager列表
             listener = new Top10Listener (10);
 
-            // We need to cleanup correctly when the user closes the window by using ctrl-c
-            // or an unhandled exception happens
+            // 当用户使用 Ctrl - C 关闭窗口或发生未处理的异常时，我们需要正确处理
             Console.CancelKeyPress += delegate { Shutdown ().Wait (); };
             AppDomain.CurrentDomain.ProcessExit += delegate { Shutdown ().Wait (); };
             AppDomain.CurrentDomain.UnhandledException += delegate (object sender, UnhandledExceptionEventArgs e) { Console.WriteLine (e.ExceptionObject); Shutdown ().Wait (); };
@@ -50,12 +49,13 @@ namespace SampleClient
             int port;
             Torrent torrent = null;
             // Ask the user what port they want to use for incoming connections
-            Console.Write ($"{Environment.NewLine}Choose a listen port: ");
+            // 询问用户要将使用哪个端口用于连接
+            Console.Write ($"{Environment.NewLine} 选择监听的端口: ");
             while (!Int32.TryParse (Console.ReadLine (), out port)) { }
 
-            // Create the settings which the engine will use
-            // downloadsPath - this is the path where we will save all the files to
-            // port - this is the port we listen for connections on
+            // 创建一个引擎的默认配置
+            // downloadsPath - 文件下载的目录
+            // port - 引擎监听的端口
             EngineSettings engineSettings = new EngineSettings {
                 SavePath = downloadsPath,
                 ListenPort = port
@@ -65,10 +65,10 @@ namespace SampleClient
             //engineSettings.GlobalMaxDownloadSpeed = 100 * 1024;
             //engineSettings.MaxReadRate = 1 * 1024 * 1024;
 
-            // Create the default settings which a torrent will have.
+            // 创建一个 Torrent 默认的配置信息.
             TorrentSettings torrentDefaults = new TorrentSettings ();
 
-            // Create an instance of the engine.
+            // 创建一个客户端引擎.
             engine = new ClientEngine (engineSettings);
 
             byte[] nodes = Array.Empty<byte> ();
@@ -82,16 +82,15 @@ namespace SampleClient
             DhtEngine dht = new DhtEngine (new IPEndPoint (IPAddress.Any, port));
             await engine.RegisterDhtAsync (dht);
 
-            // This starts the Dht engine but does not wait for the full initialization to
-            // complete. This is because it can take up to 2 minutes to bootstrap, depending
-            // on how many nodes time out when they are contacted.
+            // 这将启动Dht引擎,但不会等待完全初始化完成.
+            // 这是因为根据连接节点时超时的数量,启动最多需要2分钟.
             await engine.DhtEngine.StartAsync (nodes);
 
-            // If the SavePath does not exist, we want to create it.
+            // 如果下载路径不存在,则创建之.
             if (!Directory.Exists (engine.Settings.SavePath))
                 Directory.CreateDirectory (engine.Settings.SavePath);
 
-            // If the torrentsPath does not exist, we want to create it
+            // 如果Torrent存储目录不存在,则创建之.
             if (!Directory.Exists (torrentsPath))
                 Directory.CreateDirectory (torrentsPath);
 
@@ -102,12 +101,11 @@ namespace SampleClient
             } catch {
             }
 
-            // For each file in the torrents path that is a .torrent file, load it into the engine.
+            // 将Torrents目录中的每个 torrent 文件将其加载到引擎中.
             foreach (string file in Directory.GetFiles (torrentsPath)) {
                 if (file.EndsWith (".torrent", StringComparison.OrdinalIgnoreCase)) {
                     try {
-                        // Load the .torrent from the file into a Torrent instance
-                        // You can use this to do preprocessing should you need to
+                        // 加载torrent文件到Torrent实例中,如果需要的话,可以使用它进行预处理
                         torrent = await Torrent.LoadAsync (file);
                         Console.WriteLine (torrent.InfoHash.ToString ());
                     } catch (Exception e) {
@@ -115,58 +113,56 @@ namespace SampleClient
                         Console.WriteLine (e.Message);
                         continue;
                     }
-                    // When any preprocessing has been completed, you create a TorrentManager
-                    // which you then register with the engine.
+                    // 当任何预处理完成后,您将创建一个TorrentManager,然后在引擎上创建它.
                     TorrentManager manager = new TorrentManager (torrent, downloadsPath, torrentDefaults);
                     if (fastResume.ContainsKey (torrent.InfoHash.ToHex ()))
                         manager.LoadFastResume (new FastResume ((BEncodedDictionary) fastResume[torrent.InfoHash.ToHex ()]));
                     await engine.Register (manager);
 
-                    // Store the torrent manager in our list so we can access it later
+                    // 将 TorrentManager 存储在列表中,方便以后访问它.
                     torrents.Add (manager);
                     manager.PeersFound += Manager_PeersFound;
                 }
             }
 
-            // If we loaded no torrents, just exist. The user can put files in the torrents directory and start
-            // the client again
+            // If we loaded no torrents, just exist. The user can put files in the torrents directory and start the client again
             if (torrents.Count == 0) {
-                Console.WriteLine ("No torrents found in the Torrents directory");
-                Console.WriteLine ("Exiting...");
+                Console.WriteLine ("没有在目录中找到 torrent 文件");
+                Console.WriteLine ("退出...");
                 engine.Dispose ();
                 return;
             }
 
-            // For each torrent manager we loaded and stored in our list, hook into the events
-            // in the torrent manager and start the engine.
+            // 遍历存储在列表中的每个TorrentManager,在TorrentManager中连接到事件并启动引擎。
             foreach (TorrentManager manager in torrents) {
                 manager.PeerConnected += (o, e) => {
                     lock (listener)
-                        listener.WriteLine ($"Connection succeeded: {e.Peer.Uri}");
+                        listener.WriteLine ($"连接成功: {e.Peer.Uri}");
                 };
                 manager.ConnectionAttemptFailed += (o, e) => {
                     lock (listener)
                         listener.WriteLine (
-                            $"Connection failed: {e.Peer.ConnectionUri} - {e.Reason} - {e.Peer.AllowedEncryption}");
+                            $"连接失败: {e.Peer.ConnectionUri} - {e.Reason} - {e.Peer.AllowedEncryption}");
                 };
-                // Every time a piece is hashed, this is fired.
+                // 每次散列一个片段,就会触发这个.
                 manager.PieceHashed += delegate (object o, PieceHashedEventArgs e) {
                     lock (listener)
-                        listener.WriteLine ($"Piece Hashed: {e.PieceIndex} - {(e.HashPassed ? "Pass" : "Fail")}");
+                        listener.WriteLine ($"散列的片段: {e.PieceIndex} - {(e.HashPassed ? "Pass" : "Fail")}");
                 };
 
-                // Every time the state changes (Stopped -> Seeding -> Downloading -> Hashing) this is fired
+                // 每当状态改变时触发 (Stopped -> Seeding -> Downloading -> Hashing)
                 manager.TorrentStateChanged += delegate (object o, TorrentStateChangedEventArgs e) {
                     lock (listener)
-                        listener.WriteLine ($"OldState: {e.OldState} NewState: {e.NewState}");
+                        listener.WriteLine ($"旧状态: {e.OldState} 新状态: {e.NewState}");
                 };
 
-                // Every time the tracker's state changes, this is fired
+                // 每当跟踪器的状态改变时,就会触发.
                 manager.TrackerManager.AnnounceComplete += (sender, e) => {
                     listener.WriteLine ($"{e.Successful}: {e.Tracker}");
                 };
 
-                // Start the torrentmanager. The file will then hash (if required) and begin downloading/seeding
+                // 开始运行TorrentManager.
+                // 然后文件将散列(如果需要)并开始下载/发送.
                 await manager.StartAsync ();
             }
 
@@ -208,7 +204,7 @@ namespace SampleClient
                         AppendFormat (sb, "Upload Speed:       {0:0.00} kB/s", manager.Monitor.UploadSpeed / 1024.0);
                         AppendFormat (sb, "Total Downloaded:   {0:0.00} MB", manager.Monitor.DataBytesDownloaded / (1024.0 * 1024.0));
                         AppendFormat (sb, "Total Uploaded:     {0:0.00} MB", manager.Monitor.DataBytesUploaded / (1024.0 * 1024.0));
-                        AppendFormat(sb, "Tracker Status");
+                        AppendFormat (sb, "Tracker Status");
                         foreach (var tier in manager.TrackerManager.Tiers)
                             AppendFormat (sb, $"\t{tier.ActiveTracker} : Announce Succeeded: {tier.LastAnnounceSucceeded}. Scrape Succeeded: {tier.LastScrapSucceeded}.");
                         if (manager.PieceManager != null)
@@ -233,8 +229,7 @@ namespace SampleClient
                 Thread.Sleep (500);
             }
 
-            // Stop searching for uPnP or NAT-PMP compatible devices and delete
-            // all mapppings which had been created.
+            // 停止搜索与uPnP或NAT-PMP兼容的设备,并删除所有已创建的映射.
             await engine.DisablePortForwardingAsync (CancellationToken.None);
         }
 

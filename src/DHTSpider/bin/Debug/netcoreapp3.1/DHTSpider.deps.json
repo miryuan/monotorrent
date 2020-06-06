@@ -1,0 +1,70 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "DHTSpider/1.0.0": {
+        "dependencies": {
+          "MonoTorrent": "1.0.0"
+        },
+        "runtime": {
+          "DHTSpider.dll": {}
+        }
+      },
+      "Mono.Nat/2.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Mono.Nat.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.1.0"
+          }
+        }
+      },
+      "ReusableTasks/1.0.7": {
+        "runtime": {
+          "lib/netstandard2.1/ReusableTasks.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.7.0"
+          }
+        }
+      },
+      "MonoTorrent/1.0.0": {
+        "dependencies": {
+          "Mono.Nat": "2.0.1",
+          "ReusableTasks": "1.0.7"
+        },
+        "runtime": {
+          "MonoTorrent.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DHTSpider/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Mono.Nat/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KQw5CfR8U0LZcW0/7MlJ6KibHt3WZzRX7tbnS9oBmnrf1sVbBt0RcbIvouMmB5MisE1NO0/07DtynFuUap3DGA==",
+      "path": "mono.nat/2.0.1",
+      "hashPath": "mono.nat.2.0.1.nupkg.sha512"
+    },
+    "ReusableTasks/1.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u2bo+HRg6++bbI/PGZrC+sYvLRbImYGIYMja5FWUwt+Gou8f/xToH9ynsXTbVnwVmWLWkVfyoLxovytMDqkiSQ==",
+      "path": "reusabletasks/1.0.7",
+      "hashPath": "reusabletasks.1.0.7.nupkg.sha512"
+    },
+    "MonoTorrent/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

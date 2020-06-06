@@ -1,0 +1,140 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Mono.Nat/2.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Mono.Nat.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Mono.Nat.dll": {}
+        }
+      },
+      "ReusableTasks/1.0.7": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/ReusableTasks.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/ReusableTasks.dll": {}
+        }
+      },
+      "MonoTorrent/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Mono.Nat": "2.0.1",
+          "ReusableTasks": "1.0.7"
+        },
+        "compile": {
+          "bin/placeholder/MonoTorrent.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MonoTorrent.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Mono.Nat/2.0.1": {
+      "sha512": "KQw5CfR8U0LZcW0/7MlJ6KibHt3WZzRX7tbnS9oBmnrf1sVbBt0RcbIvouMmB5MisE1NO0/07DtynFuUap3DGA==",
+      "type": "package",
+      "path": "mono.nat/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/netstandard2.0/Mono.Nat.dll",
+        "lib/netstandard2.0/Mono.Nat.xml",
+        "mono.nat.2.0.1.nupkg.sha512",
+        "mono.nat.nuspec"
+      ]
+    },
+    "ReusableTasks/1.0.7": {
+      "sha512": "u2bo+HRg6++bbI/PGZrC+sYvLRbImYGIYMja5FWUwt+Gou8f/xToH9ynsXTbVnwVmWLWkVfyoLxovytMDqkiSQ==",
+      "type": "package",
+      "path": "reusabletasks/1.0.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/netstandard2.0/ReusableTasks.dll",
+        "lib/netstandard2.0/ReusableTasks.xml",
+        "lib/netstandard2.1/ReusableTasks.dll",
+        "lib/netstandard2.1/ReusableTasks.xml",
+        "reusabletasks.1.0.7.nupkg.sha512",
+        "reusabletasks.nuspec"
+      ]
+    },
+    "MonoTorrent/1.0.0": {
+      "type": "project",
+      "path": "../MonoTorrent/MonoTorrent.csproj",
+      "msbuildProject": "../MonoTorrent/MonoTorrent.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "MonoTorrent >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\weivy\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\Workspace\\monotorrent\\src\\DHTSpider\\DHTSpider.csproj",
+      "projectName": "DHTSpider",
+      "projectPath": "D:\\Workspace\\monotorrent\\src\\DHTSpider\\DHTSpider.csproj",
+      "packagesPath": "C:\\Users\\weivy\\.nuget\\packages\\",
+      "outputPath": "D:\\Workspace\\monotorrent\\src\\DHTSpider\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\weivy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "projectReferences": {
+            "D:\\Workspace\\monotorrent\\src\\MonoTorrent\\MonoTorrent.csproj": {
+              "projectPath": "D:\\Workspace\\monotorrent\\src\\MonoTorrent\\MonoTorrent.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
