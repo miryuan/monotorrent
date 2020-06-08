@@ -20,7 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyProject", "MyProject", "{B4D202D8-1600-4D8B-9C52-3DFB622FCC13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DHTSpider", "DHTSpider\DHTSpider.csproj", "{59778DF3-E215-43E7-8177-ED7809858C07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DHTSpider", "DHTSpider\DHTSpider.csproj", "{59778DF3-E215-43E7-8177-ED7809858C07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TorrentSpider", "TorrentSpider\TorrentSpider.csproj", "{B87E48FB-FAB1-4BA1-BE57-A1FFB9B11BDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,12 +54,17 @@ Global
 		{59778DF3-E215-43E7-8177-ED7809858C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59778DF3-E215-43E7-8177-ED7809858C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59778DF3-E215-43E7-8177-ED7809858C07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B87E48FB-FAB1-4BA1-BE57-A1FFB9B11BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B87E48FB-FAB1-4BA1-BE57-A1FFB9B11BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B87E48FB-FAB1-4BA1-BE57-A1FFB9B11BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B87E48FB-FAB1-4BA1-BE57-A1FFB9B11BDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{59778DF3-E215-43E7-8177-ED7809858C07} = {B4D202D8-1600-4D8B-9C52-3DFB622FCC13}
+		{B87E48FB-FAB1-4BA1-BE57-A1FFB9B11BDF} = {B4D202D8-1600-4D8B-9C52-3DFB622FCC13}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FDCCD363-7E21-4AA3-9373-5DCB46A67AD1}
