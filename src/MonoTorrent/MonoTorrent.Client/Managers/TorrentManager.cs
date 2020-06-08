@@ -51,43 +51,39 @@ namespace MonoTorrent.Client
         internal event EventHandler<(Torrent torrent, byte[] dict)> MetadataReceived;
 
         /// <summary>
-        /// This asynchronous event is raised whenever a new incoming, or outgoing, connection
-        /// has successfully completed the handshake process and has been fully established.
+        /// 每当新的传入或传出连接成功完成握手过程并已完全建立时,就会引发此异步事件.
         /// </summary>
         public event EventHandler<PeerConnectedEventArgs> PeerConnected;
 
         /// <summary>
-        /// This asynchronous event is raised whenever an established connection has been
-        /// closed.
+        /// 每当已建立的连接关闭时,就会引发此异步事件.
         /// </summary>
         public event EventHandler<PeerDisconnectedEventArgs> PeerDisconnected;
 
         /// <summary>
-        /// This asynchronous event is raised when an outgoing connection to a peer
-        /// could not be established.
+        /// 无法建立与对等方的传出连接时引发此异步事件.
         /// </summary>
         public event EventHandler<ConnectionAttemptFailedEventArgs> ConnectionAttemptFailed;
 
         /// <summary>
-        /// This event is raised synchronously and is only used supposed to be used by tests.
+        /// 此事件是同步引发的,并且只应用于测试.
         /// </summary>
         internal event Action<Mode, Mode> ModeChanged;
 
         /// <summary>
-        /// Raised whenever new peers are discovered and added. The object will be of type
+        /// 每当发现并添加新对等点时引发. The object will be of type
         /// <see cref="TrackerPeersAdded"/>, <see cref="PeerExchangePeersAdded"/>, <see cref="LocalPeersAdded"/>
         /// or <see cref="DhtPeersAdded"/> depending on the source of the new peers.
         /// </summary>
         public event EventHandler<PeersAddedEventArgs> PeersFound;
 
         /// <summary>
-        /// This asynchronous event is raised whenever a piece is hashed, either as part of
-        /// regular downloading, or as part of a <see cref="HashCheckAsync(bool)"/>.
+        /// 每当散列一个片段时,就会引发此异步事件,作为常规下载的一部分, or as part of a <see cref="HashCheckAsync(bool)"/>.
         /// </summary>
         public event EventHandler<PieceHashedEventArgs> PieceHashed;
 
         /// <summary>
-        /// This asynchronous event is raised whenever the TorrentManager changes state.
+        /// 每当TorrentManager更改状态时，就会引发此异步事件.
         /// </summary>
         public event EventHandler<TorrentStateChangedEventArgs> TorrentStateChanged;
 

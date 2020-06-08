@@ -39,9 +39,9 @@ namespace MonoTorrent.Client.Tracker
         event EventHandler<ScrapeResponseEventArgs> ScrapeComplete;
 
         /// <summary>
-        /// Returns the ITracker which mostly recently responded to an Announce or Scrape request.
+        /// 返回ITracker，该ITracker最近大部分时间都响应了一个通知或擦写请求.
         /// </summary>
-        [Obsolete("This is now a per-Tier value and should be accessed using TrackerTier.ActiveTier.")]
+        [Obsolete ("这现在是per-Tier值，应该使用TrackerTier访问.ActiveTier.")]
         ITracker CurrentTracker { get; }
 
         /// <summary>

@@ -191,28 +191,28 @@ namespace DHTSpider
                     sb.Remove (0, sb.Length);
                     running = torrents.Exists (m => m.State != TorrentState.Stopped);
 
-                    AppendFormat (sb, "Total Download Rate: {0:0.00}kB/sec", engine.TotalDownloadSpeed / 1024.0);
-                    AppendFormat (sb, "Total Upload Rate:   {0:0.00}kB/sec", engine.TotalUploadSpeed / 1024.0);
-                    AppendFormat (sb, "Disk Read Rate:      {0:0.00} kB/s", engine.DiskManager.ReadRate / 1024.0);
-                    AppendFormat (sb, "Disk Write Rate:     {0:0.00} kB/s", engine.DiskManager.WriteRate / 1024.0);
+                    AppendFormat (sb, "总下载速度: {0:0.00}kB/sec", engine.TotalDownloadSpeed / 1024.0);
+                    AppendFormat (sb, "总上传速度:   {0:0.00}kB/sec", engine.TotalUploadSpeed / 1024.0);
+                    AppendFormat (sb, "磁盘读速度:      {0:0.00} kB/s", engine.DiskManager.ReadRate / 1024.0);
+                    AppendFormat (sb, "磁盘写速度:     {0:0.00} kB/s", engine.DiskManager.WriteRate / 1024.0);
                     AppendFormat (sb, "Total Read:         {0:0.00} kB", engine.DiskManager.TotalRead / 1024.0);
                     AppendFormat (sb, "Total Written:      {0:0.00} kB", engine.DiskManager.TotalWritten / 1024.0);
                     AppendFormat (sb, "Open Connections:    {0}", engine.ConnectionManager.OpenConnections);
 
                     foreach (TorrentManager manager in torrents) {
                         AppendSeparator (sb);
-                        AppendFormat (sb, "State:           {0}", manager.State);
-                        AppendFormat (sb, "Name:            {0}", manager.Torrent == null ? "MetaDataMode" : manager.Torrent.Name);
-                        AppendFormat (sb, "Progress:           {0:0.00}", manager.Progress);
-                        AppendFormat (sb, "Download Speed:     {0:0.00} kB/s", manager.Monitor.DownloadSpeed / 1024.0);
-                        AppendFormat (sb, "Upload Speed:       {0:0.00} kB/s", manager.Monitor.UploadSpeed / 1024.0);
-                        AppendFormat (sb, "Total Downloaded:   {0:0.00} MB", manager.Monitor.DataBytesDownloaded / (1024.0 * 1024.0));
-                        AppendFormat (sb, "Total Uploaded:     {0:0.00} MB", manager.Monitor.DataBytesUploaded / (1024.0 * 1024.0));
+                        AppendFormat (sb, "状态:           {0}", manager.State);
+                        AppendFormat (sb, "名称:            {0}", manager.Torrent == null ? "MetaDataMode" : manager.Torrent.Name);
+                        AppendFormat (sb, "进度:           {0:0.00}", manager.Progress);
+                        AppendFormat (sb, "下载速度:     {0:0.00} kB/s", manager.Monitor.DownloadSpeed / 1024.0);
+                        AppendFormat (sb, "上传速度:       {0:0.00} kB/s", manager.Monitor.UploadSpeed / 1024.0);
+                        AppendFormat (sb, "下载量:   {0:0.00} MB", manager.Monitor.DataBytesDownloaded / (1024.0 * 1024.0));
+                        AppendFormat (sb, "上传量:     {0:0.00} MB", manager.Monitor.DataBytesUploaded / (1024.0 * 1024.0));
                         AppendFormat (sb, "Tracker Status");
                         foreach (var tier in manager.TrackerManager.Tiers)
                             AppendFormat (sb, $"\t{tier.ActiveTracker} : Announce Succeeded: {tier.LastAnnounceSucceeded}. Scrape Succeeded: {tier.LastScrapSucceeded}.");
                         if (manager.PieceManager != null)
-                            AppendFormat (sb, "Current Requests:   {0}", await manager.PieceManager.CurrentRequestCountAsync ());
+                            AppendFormat (sb, "当前请求:   {0}", await manager.PieceManager.CurrentRequestCountAsync ());
 
                         foreach (PeerId p in await manager.GetPeersAsync ())
                             AppendFormat (sb, "\t{2} - {1:0.00}/{3:0.00}kB/sec - {0}", p.Uri,

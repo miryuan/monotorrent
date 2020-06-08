@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J6uEhzhvzrYlcnaIkslcbVEGsMCUqrt9DUqMcBde/G7xqLJtH/wmi9IIqStBlaYvBdkvfD/dw6yzE2pfuUnJUw==",
+  "dgSpecHash": "lO8w6OQLsBYDgeS+fnLlZpGZvGqZ1DCFp/w+Mz8+XC5Dzj8GB6wcavk38R4dzHcpUAQmmczR5rFWnP5ficp19A==",
   "success": true,
-  "projectFilePath": "D:\\Workspace\\monotorrent\\src\\TorrentSpider\\TorrentSpider.csproj",
+  "projectFilePath": "E:\\monotorrent\\src\\TorrentSpider\\TorrentSpider.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\weivy\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.3\\microsoft.extensions.configuration.3.1.3.nupkg.sha512",
     "C:\\Users\\weivy\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.3\\microsoft.extensions.configuration.abstractions.3.1.3.nupkg.sha512",
@@ -31,6 +31,8 @@
     "C:\\Users\\weivy\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.3\\microsoft.extensions.primitives.3.1.3.nupkg.sha512",
     "C:\\Users\\weivy\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\weivy\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\weivy\\.nuget\\packages\\mono.nat\\2.0.1\\mono.nat.2.0.1.nupkg.sha512",
+    "C:\\Users\\weivy\\.nuget\\packages\\reusabletasks\\1.0.7\\reusabletasks.1.0.7.nupkg.sha512",
     "C:\\Users\\weivy\\.nuget\\packages\\system.diagnostics.eventlog\\4.7.0\\system.diagnostics.eventlog.4.7.0.nupkg.sha512",
     "C:\\Users\\weivy\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\weivy\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"

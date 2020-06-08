@@ -14,3 +14,7 @@
 /src/SampleClient/obj/
 /src/TrackerApp/bin/
 /src/TrackerApp/obj/
+/src/DHTSpider/bin/
+/src/DHTSpider/obj/
+/src/TorrentSpider/bin/
+/src/TorrentSpider/obj/
